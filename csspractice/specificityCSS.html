@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity</title>
+    <style>
+        body{background-color: rgb(143, 120, 143);
+        }
+
+        div{
+            font-size: 200%;
+            font-weight: bold;
+        }
+
+        #demo {color: blue;}
+        .test {color: darkgreen;} 
+        p {color: darkorange;} 
+    </style>
+</head>
+
+<body>
+    <div>
+    <p id="demo" class="test" style="color: rgb(163, 22, 22);">Hello World! Only Red will be displayed.</p>
+    <p id="demo" class="test" >Hello World! Only Blue will be displayed.</p>
+    <p class="test" >Hello World! Only Green will be displayed.</p>
+    <p>Hello World! Orange will be displayed.</p>
+    </div>
+</body>
+<!-- Every CSS selector has its place in the specificity hierarchy.
+
+There are four categories which define the specificity level of a selector:
+
+Inline styles - Example: <h1 style="color: pink;">
+IDs - Example: #navbar
+Classes, pseudo-classes, attribute selectors - Example: .test, :hover, [href]
+Elements and pseudo-elements - Example: h1, :before
+
+Equal specificity: the latest rule wins - If the same rule is written twice into the external style sheet, then the latest rule wins.
+-->
+
+<!-- The table below shows some examples on how to calculate specificity values:
+
+Selector	            Specificity Value	Calculation
+p	                        1	                1
+p.test	                    11	                1 + 10
+p#demo	                    101	                1 + 100
+<p style="color: pink;">	1000	            1000
+#demo	                    100	                100
+.test	                    10                  10
+p.test1.test2	            21	                1 + 10 + 10
+#navbar p#demo	            201	                100 + 1 + 100
+
+*                       	0	                0 (the universal selector is ignored) -->
+
+<!--The embedded style sheet is closer to the element to be styled. So in the following situation
+
+ From external CSS file:
+#content h1 {background-color: red;}
+
+In HTML file:
+<style>
+#content h1 {background-color: yellow;}
+</style> 
+the latter rule will be applied.
+-->
+
+</html>
